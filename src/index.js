@@ -1,6 +1,6 @@
 import lr from 'livereload'
 
-export default function livereload (options = { watch: __dirname + '/dist' }) {
+export default function livereload (options = { watch: 'dist' }) {
   if (typeof options === 'string') {
     options = {
       watch: options
@@ -8,7 +8,7 @@ export default function livereload (options = { watch: __dirname + '/dist' }) {
   }
 
   const port = options.port || 35729
-  server = lr.createServer(options)
+  const server = lr.createServer(options)
   server.watch(options.watch)
 
   return {
