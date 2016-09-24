@@ -1,6 +1,6 @@
 import lr from 'livereload'
 
-export default function livereload (options = { watch: 'dist' }) {
+export default function livereload (options = { watch: '' }) {
   if (typeof options === 'string') {
     options = {
       watch: options

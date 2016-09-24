@@ -35,16 +35,32 @@ export default {
 }
 ```
 
+To make it a real dev-server, combine this plugin with [rollup-plugin-serve].
+```js
+// rollup.config.js
+import serve from 'rollup-plugin-serve'
+import livereload from 'rollup-plugin-livereload'
+
+export default {
+  entry: 'entry.js',
+  dest: 'bundle.js',
+  plugins: [
+    serve(),      // index.html should be in root of project
+    livereload()
+  ]
+}
+```
+
 ### Options
 
-By default it watches the `dist` folder. Change it by passing a string:
+By default it watches the bundle `dest`. If you also have css output, pass the folder to which the build files are written.
 ```
-livereload('public')
+livereload('dist')
 
 // --- OR ---
 
 livereload({
-  watch: 'public',
+  watch: 'dist',
   // other livereload options
 })
 ```
@@ -76,3 +92,4 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 [link-author]: https://github.com/thgh
 [link-contributors]: ../../contributors
 [livereload]: https://www.npmjs.com/package/livereload
+[rollup-plugin-serve]: https://www.npmjs.com/package/rollup-plugin-serve
