@@ -1,6 +1,4 @@
-# Rollup plugin that bundles imported css
-
-### Integrates nicely with rollup-plugin-vue2
+# Rollup plugin LiveReload
 
 <a href="LICENSE">
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="Software License" />
@@ -39,7 +37,19 @@ export default {
 
 ### Options
 
-There should be an option to change the watcher.
+By default it watches the `dist` folder. Change it by passing a string:
+```
+livereload('public')
+
+// --- OR ---
+
+livereload({
+  watch: 'public',
+  // other livereload options
+})
+```
+
+Options are always passed to [`livereload.createServer()`][livereload]
 
 ## Changelog
 
@@ -65,7 +75,4 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
 [link-author]: https://github.com/thgh
 [link-contributors]: ../../contributors
-[rollup-plugin-vue]: https://www.npmjs.com/package/rollup-plugin-vue
-[rollup-plugin-buble]: https://www.npmjs.com/package/rollup-plugin-buble
-[rollup-plugin-babel]: https://www.npmjs.com/package/rollup-plugin-babel
-[vue-template-compiler]: https://www.npmjs.com/package/vue-template-compiler
+[livereload]: https://www.npmjs.com/package/livereload
