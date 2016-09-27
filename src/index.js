@@ -1,4 +1,4 @@
-import lr from 'livereload'
+import { createServer } from 'livereload'
 import { resolve } from 'path'
 
 export default function livereload (options = { watch: '' }) {
@@ -9,7 +9,7 @@ export default function livereload (options = { watch: '' }) {
   }
 
   const port = options.port || 35729
-  const server = lr.createServer(options)
+  const server = createServer(options)
   server.watch(resolve(process.cwd(), options.watch))
 
   var enabled = false
