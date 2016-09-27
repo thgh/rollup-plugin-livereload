@@ -1,4 +1,5 @@
 import lr from 'livereload'
+import { resolve } from 'path'
 
 export default function livereload (options = { watch: '' }) {
   if (typeof options === 'string') {
@@ -9,7 +10,7 @@ export default function livereload (options = { watch: '' }) {
 
   const port = options.port || 35729
   const server = lr.createServer(options)
-  server.watch(options.watch)
+  server.watch(resolve(process.cwd(), options.watch))
 
   return {
     name: 'livereload',
