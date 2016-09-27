@@ -14,9 +14,8 @@ export default function livereload (options = { watch: '' }) {
 
   return {
     name: 'livereload',
-    transformBundle (code) {
-      return code + `;document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + 
-':${port}/livereload.js?snipver=1"></' + 'script>')`
+    banner () {
+      return `document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1"></' + 'script>');`
     }
   }
 }
