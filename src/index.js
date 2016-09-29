@@ -21,7 +21,7 @@ export default function livereload (options = { watch: '' }) {
     },
     ongenerate () {
       if (!enabled) {
-        enabled = false
+        enabled = true
         console.log(green('LiveReload enabled'))
       }
     }
