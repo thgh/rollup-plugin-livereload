@@ -17,7 +17,7 @@ export default function livereload (options = { watch: '' }) {
   return {
     name: 'livereload',
     banner () {
-      return `document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1"></' + 'script>');`
+      return `(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`
     },
     ongenerate () {
       if (!enabled) {
