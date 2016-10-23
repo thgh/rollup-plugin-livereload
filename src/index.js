@@ -1,25 +1,24 @@
 import { createServer } from 'livereload'
 import { resolve } from 'path'
 
+let opts = { consoleLogMsg: true }
+
 export default function livereload (options = { watch: '' }) {
   if (typeof options === 'string') {
-    options = {
-      watch: options
-    }
+    options = Object.assign(opts, { watch: options });
   }
 
   const port = options.port || 35729
   const server = createServer(options)
   server.watch(resolve(process.cwd(), options.watch))
 
-  var enabled = false
+  opts = Object.assign(opts, options)
 
   return {
     name: 'livereload',
     banner: `document.write('<script src="http${options.https?'s':''}://' + (location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1"></' + 'script>');`,
     ongenerate () {
-      if (!enabled) {
-        enabled = true
+      if (opts.consoleLogMsg) {
         console.log(green('LiveReload enabled'))
       }
     }

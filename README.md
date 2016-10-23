@@ -61,6 +61,8 @@ livereload('dist')
 
 livereload({
   watch: 'dist',
+  consoleLogMsg: false,
+  https: true
   // other livereload options
 })
 ```
