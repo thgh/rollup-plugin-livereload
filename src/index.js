@@ -8,11 +8,11 @@ export default function livereload (options = { watch: '' }) {
     }
   }
 
+  var enabled = options.verbose === false
   const port = options.port || 35729
   const server = createServer(options)
   server.watch(resolve(process.cwd(), options.watch))
 
-  var enabled = options.verbose !== false
 
   return {
     name: 'livereload',
