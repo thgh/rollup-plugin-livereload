@@ -11,8 +11,13 @@ export default function livereload (options = { watch: '' }) {
   var enabled = options.verbose === false
   const port = options.port || 35729
   const server = createServer(options)
-  server.watch(resolve(process.cwd(), options.watch))
 
+  // Start watching
+  if (Array.isArray(options.watch)) {
+    server.watch(options.watch.map(w => resolve(process.cwd(), w)))
+  } else {
+    server.watch(resolve(process.cwd(), options.watch))
+  }
 
   return {
     name: 'livereload',
