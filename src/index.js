@@ -6,6 +6,8 @@ export default function livereload (options = { watch: '' }) {
     options = {
       watch: options
     }
+  } else {
+    options.watch = options.watch || '';
   }
 
   var enabled = options.verbose === false
