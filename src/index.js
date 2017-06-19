@@ -19,6 +19,16 @@ export default function livereload (options = { watch: '' }) {
     server.watch(resolve(process.cwd(), options.watch))
   }
 
+  var script = `
+    (function() {
+    var src = "http${options.https?'s':''}://' + (location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1";
+    var script    = document.createElement('script');
+    script.type   = 'text/javascript';
+    script.src    = src;
+    document.getElementsByTagName('head')[0].appendChild(script);
+    }());
+  `;
+
   return {
     name: 'livereload',
     banner: `document.write('<script src="http${options.https?'s':''}://' + (location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1"></' + 'script>');`,
