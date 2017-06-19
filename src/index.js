@@ -31,7 +31,7 @@ export default function livereload (options = { watch: '' }) {
 
   return {
     name: 'livereload',
-    banner: `document.write('<script src="http${options.https?'s':''}://' + (location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1"></' + 'script>');`,
+    banner: script,
     ongenerate () {
       if (!enabled) {
         enabled = true
