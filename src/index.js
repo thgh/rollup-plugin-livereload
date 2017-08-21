@@ -8,11 +8,18 @@ export default function livereload (options = { watch: '' }) {
     }
   }
 
+  var enabled = options.verbose === false
   const port = options.port || 35729
   const server = createServer(options)
-  server.watch(resolve(process.cwd(), options.watch))
 
-  var enabled = false
+  // Start watching
+  if (Array.isArray(options.watch)) {
+    server.watch(options.watch.map(w => resolve(process.cwd(), w)))
+  } else {
+    server.watch(resolve(process.cwd(), options.watch))
+  }
+
+  closeServerOnTermination(server)
 
   return {
     name: 'livereload',
@@ -30,4 +37,14 @@ export default function livereload (options = { watch: '' }) {
 
 function green (text) {
   return '\u001b[1m\u001b[32m' + text + '\u001b[39m\u001b[22m'
+}
+
+function closeServerOnTermination (server) {
+    const terminationSignals = ['SIGINT', 'SIGTERM']
+    terminationSignals.forEach((signal) => {
+        process.on(signal, () => {
+            server.close()
+            process.exit()
+        })
+    })
 }
