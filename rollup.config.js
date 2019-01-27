@@ -1,15 +1,23 @@
-import buble from 'rollup-plugin-buble'
+import buble from 'rollup-plugin-buble';
+import commonjs from 'rollup-plugin-commonjs';
+import resolve from 'rollup-plugin-node-resolve';
 
 export default {
-  entry: 'src/index.js',
-  dest: 'dist/index.cjs.js',
-  plugins: [
-    buble()
-  ],
-  // Cleaner console
-  onwarn (msg) {
-    if (msg && msg.startsWith('Treating')) {
-      return
+  input: 'src/index.js',
+  output: [
+    {
+      file: 'dist/index.cjs.js',
+      format: 'cjs'
+    },
+    {
+      file: 'dist/index.es.js',
+      format: 'es'
     }
-  }
-}
+  ],
+  external: ['livereload', 'path'],
+  plugins: [
+    resolve(),
+    commonjs(),
+    buble()
+  ]
+};
