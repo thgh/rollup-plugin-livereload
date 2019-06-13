@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-livereload",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rollup plugin for LiveReload that watches the bundle and reloads the page on change",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
