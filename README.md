@@ -15,7 +15,7 @@
 <a href="https://github.com/thgh/rollup-plugin-livereload/releases">
   <img src="https://img.shields.io/github/release/thgh/rollup-plugin-livereload.svg" alt="Latest Version" />
 </a>
-  
+
 ## Installation
 ```
 npm install --save-dev rollup-plugin-livereload
@@ -64,7 +64,10 @@ livereload({
   verbose: false, // Disable console output
 
   // other livereload options
-  https: true
+  https: {
+      key: fs.readFileSync('keys/agent2-key.pem'),
+      cert: fs.readFileSync('keys/agent2-cert.pem')
+  }
 })
 ```
 
