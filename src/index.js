@@ -1,7 +1,7 @@
 import { createServer } from 'livereload'
 import { resolve } from 'path'
 
-export default function livereload(options = { watch: '' }) {
+export default function livereload (options = { watch: '' }) {
   if (typeof options === 'string') {
     options = {
       watch: options
@@ -10,7 +10,7 @@ export default function livereload(options = { watch: '' }) {
     options.watch = options.watch || ''
   }
 
-  var enabled = options.verbose === false
+  let enabled = options.verbose === false
   const port = options.port || 35729
   const server = createServer(options)
 
@@ -25,10 +25,19 @@ export default function livereload(options = { watch: '' }) {
 
   return {
     name: 'livereload',
-    banner() {
-      return `(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`
+    banner () {
+      function inject (port) {
+        if (!document.getElementById('livereload')) {
+          const el = document.createElement('script')
+          el.id = 'livereload'
+          el.async = 1
+          el.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':' + port + '/livereload.js?snipver=1'
+          document.head.appendChild(el)
+        }
+      }
+      return (`(${inject.toString()})(${port});`)
     },
-    generateBundle() {
+    generateBundle () {
       if (!enabled) {
         enabled = true
         console.log(green('LiveReload enabled'))
@@ -37,11 +46,11 @@ export default function livereload(options = { watch: '' }) {
   }
 }
 
-function green(text) {
+function green (text) {
   return '\u001b[1m\u001b[32m' + text + '\u001b[39m\u001b[22m'
 }
 
-function closeServerOnTermination(server) {
+function closeServerOnTermination (server) {
   const terminationSignals = ['SIGINT', 'SIGTERM']
   terminationSignals.forEach(signal => {
     process.on(signal, () => {
