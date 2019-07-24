@@ -12,6 +12,7 @@ export default function livereload (options = { watch: '' }) {
 
   let enabled = options.verbose === false
   const port = options.port || 35729
+  const clientUrl = options.clientUrl || ''
   const server = createServer(options)
 
   // Start watching
@@ -26,16 +27,17 @@ export default function livereload (options = { watch: '' }) {
   return {
     name: 'livereload',
     banner () {
-      function inject (port) {
+      function inject (port, clientUrl) {
         if (!document.getElementById('livereload')) {
+          const url = clientUrl || '//' + (window.location.host || 'localhost').split(':')[0] + ':' + port + '/livereload.js?snipver=1';
           const el = document.createElement('script')
           el.id = 'livereload'
           el.async = 1
-          el.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':' + port + '/livereload.js?snipver=1'
+          el.src = url
           document.head.appendChild(el)
         }
       }
-      return (`(${inject.toString()})(${port});`)
+      return (`(${inject.toString()})(${port}, '${clientUrl}');`)
     },
     generateBundle () {
       if (!enabled) {
