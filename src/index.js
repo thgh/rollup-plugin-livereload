@@ -2,7 +2,7 @@ import { createServer } from 'livereload'
 import { resolve } from 'path'
 import { check as checkPort, find as findPort } from 'port-authority'
 
-export default function livereload(options = { watch: '' }) {
+export default function livereload (options = { watch: '' }) {
   if (typeof options === 'string') {
     options = {
       watch: options
@@ -19,7 +19,7 @@ export default function livereload(options = { watch: '' }) {
     availablePort => {
       const server = createServer({
         ...options,
-        port: availablePort,
+        port: availablePort
       })
 
       // Start watching
@@ -35,21 +35,22 @@ export default function livereload(options = { watch: '' }) {
 
   return {
     name: 'livereload',
-    banner() {
+    banner () {
       return availablePortPromise.then(
-        availablePort => `(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':${ availablePort }/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`
+        availablePort => `(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':${availablePort}/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`
       )
     },
-    generateBundle() {
+    generateBundle () {
       availablePortPromise.then(
         availablePort => {
           if (!enabled) {
             enabled = true
 
-            let message = green(`LiveReload enabled on port ${ availablePort }.`)
+            let message = green(`LiveReload is running on port ${availablePort}.`)
 
-            if (options.hasOwnProperty('port') && parseInt(options.port) !== availablePort) {
-              message += yellow(`  (Port ${ options.port } was unavailable.)`)
+            // linter disallows direct dict.hasOwnProperty() calls. :eyeroll:
+            if ({}.hasOwnProperty.call(options, 'port') && parseInt(options.port) !== availablePort) {
+              message += yellow(`  (Port ${options.port} was unavailable.)`)
             }
 
             console.log(message)
@@ -60,14 +61,14 @@ export default function livereload(options = { watch: '' }) {
   }
 }
 
-function getConsoleColorWrapper(consoleColorCode) {
-  return (text) => `\u001b[1m\u001b[${ consoleColorCode }m${ text }\u001b[39m\u001b[22m`
+function getConsoleColorWrapper (consoleColorCode) {
+  return (text) => `\u001b[1m\u001b[${consoleColorCode}m${text}\u001b[39m\u001b[22m`
 }
 
 const green = getConsoleColorWrapper(32)
 const yellow = getConsoleColorWrapper(33)
 
-function getAvailablePort(preferredPort) {
+function getAvailablePort (preferredPort) {
   return checkPort(preferredPort).then(
     preferredPortIsAvailable => {
       if (preferredPortIsAvailable) {
@@ -81,7 +82,7 @@ function getAvailablePort(preferredPort) {
   )
 }
 
-function closeServerOnTermination(server) {
+function closeServerOnTermination (server) {
   const terminationSignals = ['SIGINT', 'SIGTERM']
   terminationSignals.forEach(signal => {
     process.on(signal, () => {
