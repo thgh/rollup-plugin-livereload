@@ -34,7 +34,8 @@
     "rollup": "^1.0.0"
   },
   "dependencies": {
-    "livereload": "^0.8.0"
+    "livereload": "^0.8.0",
+    "port-authority": "^1.0.5"
   },
   "devDependencies": {
     "rollup": "^1.1.2",

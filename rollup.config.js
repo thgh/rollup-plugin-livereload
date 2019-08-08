@@ -12,6 +12,8 @@ export default {
       format: 'es'
     }
   ],
-  external: ['livereload', 'path'],
-  plugins: [buble()]
+  external: ['livereload', 'path', 'port-authority'],
+  plugins: [buble({
+    objectAssign: 'Object.assign',
+  })]
 }

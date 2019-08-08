@@ -984,6 +984,11 @@ path-is-absolute@^1.0.0:
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
   integrity sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
 
+port-authority@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/port-authority/-/port-authority-1.0.5.tgz#2aab700997414818ecbd9be2ad0b38433a7255d1"
+  integrity sha512-3nhtaK54aIJrL+D08Lt8AoE10Yz8BOi0gxFlGHCCYFFJ3/oeVdca4AGw5Bzw9Vr1Ntil0fU4ZiG8I3fLhQEnjg==
+
 posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
