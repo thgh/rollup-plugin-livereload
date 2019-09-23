@@ -712,7 +712,7 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
-livereload@^0.8.0:
+livereload@0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/livereload/-/livereload-0.8.0.tgz#9af99cf8a262152cf7176b320accfc5d2ae4f8bf"
   integrity sha512-Hi5Na6VIK3e8zlgOS50fu+iOTKWj5hM0BE7NKpZkwnfWTnktTjA38ZUXa2NlJww8/GrdVhpnxdqlLad5fkO27g==
