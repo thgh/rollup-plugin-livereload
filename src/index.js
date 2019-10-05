@@ -27,7 +27,7 @@ export default function livereload (options = { watch: '' }) {
   return {
     name: 'livereload',
     banner() {
-      return `(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = ${snippetSrc}; r.id = 'livereloadscript'; l.head.appendChild(r) })(document);`
+      return `(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = ${snippetSrc}; r.id = 'livereloadscript'; l.head.appendChild(r) })(window.document);`
     },
     generateBundle () {
       if (!enabled) {
