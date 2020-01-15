@@ -1,7 +1,9 @@
 import { createServer } from 'livereload'
 import { resolve } from 'path'
 
-export default function livereload (options = { watch: '' }) {
+let server
+
+export default function livereload(options = { watch: '' }) {
   if (typeof options === 'string') {
     options = {
       watch: options
@@ -10,10 +12,15 @@ export default function livereload (options = { watch: '' }) {
     options.watch = options.watch || ''
   }
 
+  // release previous server instance if rollup is reloading configuration in watch mode
+  if (server) {
+    server.close()
+  }
+
   let enabled = options.verbose === false
   const port = options.port || 35729
   const snippetSrc = options.clientUrl ? JSON.stringify(options.clientUrl) : `'//' + (window.location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1'`
-  const server = createServer(options)
+  server = createServer(options)
 
   // Start watching
   if (Array.isArray(options.watch)) {
@@ -22,7 +29,12 @@ export default function livereload (options = { watch: '' }) {
     server.watch(resolve(process.cwd(), options.watch))
   }
 
-  closeServerOnTermination(server)
+  // hooking on SIGINT/SIGTERM might cause more harm than good, since only one
+  // plugin / lib can do that, we might cause process.exit before actual cleanup
+  // is all completed -- disabling by default behind an option for now...
+  if (options.closeServerOnTermination) {
+    closeServerOnTermination(server);
+  }
 
   return {
     name: 'livereload',
