@@ -2,6 +2,7 @@ import { createServer } from 'livereload'
 import { resolve } from 'path'
 
 let server
+let removeTerminationListeners
 
 export default function livereload(options = { watch: '' }) {
   if (typeof options === 'string') {
@@ -15,6 +16,13 @@ export default function livereload(options = { watch: '' }) {
   // release previous server instance if rollup is reloading configuration in watch mode
   if (server) {
     server.close()
+    server = null
+  }
+  // we need to release previous listeners, or livereload will try to close
+  // already closed servers on termination
+  if (removeTerminationListeners) {
+    removeTerminationListeners()
+    removeTerminationListeners = null
   }
 
   let enabled = options.verbose === false
@@ -29,12 +37,7 @@ export default function livereload(options = { watch: '' }) {
     server.watch(resolve(process.cwd(), options.watch))
   }
 
-  // hooking on SIGINT/SIGTERM might cause more harm than good, since only one
-  // plugin / lib can do that, we might cause process.exit before actual cleanup
-  // is all completed -- disabling by default behind an option for now...
-  if (options.closeServerOnTermination) {
-    closeServerOnTermination(server);
-  }
+  removeTerminationListeners = closeServerOnTermination(server);
 
   return {
     name: 'livereload',
@@ -56,10 +59,21 @@ function green (text) {
 
 function closeServerOnTermination (server) {
   const terminationSignals = ['SIGINT', 'SIGTERM']
-  terminationSignals.forEach(signal => {
-    process.on(signal, () => {
-      server.close()
-      process.exit()
+
+  const listener = () => {
+    server.close()
+    process.exit()
+  }
+
+  const cleanup = () => {
+    terminationSignals.forEach(signal => {
+      process.removeListener(signal, listener)
     })
+  }
+
+  terminationSignals.forEach(signal => {
+    process.on(signal, listener)
   })
+
+  return cleanup
 }
