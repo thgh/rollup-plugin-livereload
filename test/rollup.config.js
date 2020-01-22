@@ -9,6 +9,9 @@ export default {
   },
   plugins: [
     serve(),
-    live()
-  ]
+    live(),
+  ],
+  watch: {
+    clearScreen: false
+  },
 }

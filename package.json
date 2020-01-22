@@ -8,7 +8,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -cw",
-    "lint": "standard rollup.config.js src/**",
+    "fix": "prettier --write rollup.config.js src/**",
     "test": "cd test && rollup -cw ; cd ..",
     "prepare": "npm run build"
   },
