@@ -16,12 +16,15 @@ export default function livereload(options = { watch: '' }) {
   // in watch mode
   if (server) {
     server.close()
-    server = null
   }
 
   let enabled = options.verbose === false
   const port = options.port || 35729
-  const snippetSrc = options.clientUrl ? JSON.stringify(options.clientUrl) : `'//' + (window.location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1'`
+  const snippetSrc = options.clientUrl
+    ? JSON.stringify(options.clientUrl)
+    : process.env.CODESANDBOX_SSE
+    ? `'//' + (window.location.host.replace(/^([^\.]+)/, "$1-35729")).split(':')[0] + '/livereload.js?snipver=1&port=443'`
+    : `'//' + (window.location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1'`
 
   server = createServer(options)
 
