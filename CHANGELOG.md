@@ -4,6 +4,14 @@ All notable changes to `rollup-plugin-livereload` will be documented in this fil
 
 ## [Unreleased]
 
+## [1.2.0] - 2020-03-19
+
+### Added
+- Add support for IE8 #43 @thgh
+
+### Changed
+- Only keep 1 server instance running #33 @rixo
+
 ## [1.1.0] - 2020-03-19
 
 ### Added
