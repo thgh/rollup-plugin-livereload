@@ -4,7 +4,20 @@ All notable changes to `rollup-plugin-livereload` will be documented in this fil
 
 ## [Unreleased]
 
-## [0.0.2]
+## [1.1.0] - 2020-03-19
+
+### Added
+- Add support for codesandbox.io #37 @jakobrosenberg
+
+## [1.0.4] - 2019-10-05
+
+### Changed
+- Update livereload to 0.8.0 || ^0.8.2
+
+## [1.0.0] - 2019-01-27
+
+### Changed
+- Add support for Rollup 1 @yohangz
 
 ## [0.0.1] - 2016-09-24
 
