@@ -4,6 +4,11 @@ All notable changes to `rollup-plugin-livereload` will be documented in this fil
 
 ## [Unreleased]
 
+## [1.3.0] - 2020-04-28
+
+### Changed
+- Fix codesandbox support
+
 ## [1.2.0] - 2020-03-19
 
 ### Added
