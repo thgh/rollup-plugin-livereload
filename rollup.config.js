@@ -1,17 +1,19 @@
-import buble from '@rollup/plugin-buble'
+import { builtinModules } from 'module'
+import resolve from '@rollup/plugin-node-resolve'
 
 export default {
   input: 'src/index.js',
   output: [
     {
       file: 'dist/index.cjs.js',
-      format: 'cjs'
+      format: 'cjs',
+      exports: 'default',
     },
     {
       file: 'dist/index.es.js',
-      format: 'es'
-    }
+      format: 'es',
+    },
   ],
-  external: ['livereload', 'path'],
-  plugins: [buble()]
+  external: ['livereload'].concat(builtinModules),
+  plugins: [resolve()],
 }

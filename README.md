@@ -17,11 +17,13 @@
 </a>
 
 ## Installation
+
 ```
 npm install --save-dev rollup-plugin-livereload
 ```
 
 ## Usage
+
 ```js
 // rollup.config.js
 import livereload from 'rollup-plugin-livereload'
@@ -29,13 +31,12 @@ import livereload from 'rollup-plugin-livereload'
 export default {
   entry: 'entry.js',
   dest: 'bundle.js',
-  plugins: [
-    livereload()
-  ]
+  plugins: [livereload()],
 }
 ```
 
 To make it a real dev-server, combine this plugin with [rollup-plugin-serve].
+
 ```js
 // rollup.config.js
 import serve from 'rollup-plugin-serve'
@@ -45,15 +46,16 @@ export default {
   entry: 'entry.js',
   dest: 'bundle.js',
   plugins: [
-    serve(),      // index.html should be in root of project
-    livereload()
-  ]
+    serve(), // index.html should be in root of project
+    livereload(),
+  ],
 }
 ```
 
 ### Options
 
 By default, it watches the current directory. If you also have css output, pass the folder to which the build files are written.
+
 ```
 livereload('dist')
 
@@ -82,9 +84,10 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 Contributions and feedback are very welcome.
 
 To get it running:
-  1. Clone the project.
-  2. `npm install`
-  3. `npm run build`
+
+1. Clone the project.
+2. `npm install`
+3. `npm run build`
 
 ## Credits
 

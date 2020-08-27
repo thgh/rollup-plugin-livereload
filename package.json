@@ -8,7 +8,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -cw",
-    "lint": "standard rollup.config.js src/**",
+    "lint": "prettier -l .",
+    "fix": "prettier --write .",
     "test": "cd test && rollup -cw ; cd ..",
     "prepare": "npm run build"
   },
@@ -31,11 +32,15 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=8.3"
+  },
   "dependencies": {
     "livereload": "^0.9.1"
   },
   "devDependencies": {
-    "@rollup/plugin-buble": "^0.21.1",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "port-authority": "^1.1.1",
     "rollup": "2",
     "rollup-plugin-serve": "1"
   }

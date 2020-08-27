@@ -1,14 +1,14 @@
 import serve from 'rollup-plugin-serve'
-import live from '..'
+import live from '../src/index.js'
 
 export default {
   input: 'entry.js',
   output: {
     file: 'dest.js',
-    format: 'cjs'
+    format: 'cjs',
   },
   plugins: [
-    serve(),
-    live()
-  ]
+    serve({ contentBase: '', port: Math.round(Math.random() * 10000) + 40000 }),
+    live(),
+  ],
 }
