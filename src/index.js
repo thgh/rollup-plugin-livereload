@@ -4,6 +4,7 @@ import { find } from 'port-authority'
 
 const state = (global.PLUGIN_LIVERELOAD = global.PLUGIN_LIVERELOAD || {
   server: null,
+  port: null,
 })
 
 export default function livereload(options = { watch: '' }) {
@@ -15,16 +16,14 @@ export default function livereload(options = { watch: '' }) {
     options.watch = options.watch || ''
   }
 
-  // release previous server instance if rollup is reloading configuration
-  // in watch mode
-  if (state.server) {
-    state.server.close()
-  }
-
   let enabled = options.verbose === false
-  const portPromise = find(options.port || 35729)
+  const portPromise = state.port ? Promise.resolve(state.port) : find(options.port || 35729);
 
   portPromise.then(port => {
+    // state.server is already set, we must be in watch mode and already have
+    // the server running.
+    if( state.server) return;
+    state.port = port;
     state.server = createServer({ ...options, port })
 
     // Start watching
