@@ -66,6 +66,8 @@ livereload({
   verbose: false, // Disable console output
 
   // other livereload options
+  port: 12345,
+  delay: 300,
   https: {
       key: fs.readFileSync('keys/agent2-key.pem'),
       cert: fs.readFileSync('keys/agent2-cert.pem')
