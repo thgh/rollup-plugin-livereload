@@ -38,6 +38,9 @@ export default function livereload(options = { watch: '' }) {
   return {
     name: 'livereload',
     async banner() {
+      if (options.inject === false) {
+        return
+      }
       const port = await portPromise
       const snippetSrc = options.clientUrl
         ? JSON.stringify(options.clientUrl)

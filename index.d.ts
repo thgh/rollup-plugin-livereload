@@ -2,9 +2,19 @@ import { Plugin } from 'rollup'
 
 export interface RollupLivereloadOptions {
   /** Defaults to current directory */
-  watch?: string
+  watch?: string | string[]
 
-  /** Defaults to true */
+  /**
+   * Inject the livereload snippet into the bundle which will enable livereload
+   * in your web app.
+   * Defaults to true 
+   */
+  inject?: boolean
+
+  /**
+   * Log a message to console when livereload is ready
+   * Defaults to true 
+   */
   verbose?: boolean
 
   ///
