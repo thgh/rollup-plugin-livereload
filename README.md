@@ -29,8 +29,8 @@ npm install --save-dev rollup-plugin-livereload
 import livereload from 'rollup-plugin-livereload'
 
 export default {
-  entry: 'entry.js',
-  dest: 'bundle.js',
+  input: 'entry.js',
+  output: { file:'bundle.js' },
   plugins: [livereload()],
 }
 ```
@@ -43,8 +43,8 @@ import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
 
 export default {
-  entry: 'entry.js',
-  dest: 'bundle.js',
+  input: 'entry.js',
+  output: { file:'bundle.js' },
   plugins: [
     serve(), // index.html should be in root of project
     livereload(),
