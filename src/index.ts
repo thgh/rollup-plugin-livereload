@@ -90,8 +90,8 @@ export default function livereload(
       const snippetSrc = parsedOptions.clientUrl
         ? JSON.stringify(parsedOptions.clientUrl)
         : process.env.CODESANDBOX_SSE
-        ? `'//' + (self.location.host.replace(/^([^.]+)-\\d+/,"$1").replace(/^([^.]+)/, "$1-${port}")).split(':')[0] + '/livereload.js?snipver=1&port=443'`
-        : `(self.location.protocol.startsWith('http') ? '' : 'http:') + '//' + (self.location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1'`
+        ? `'//' + (self.location.hostname.replace(/^([^.]+)-\\d+/,"$1").replace(/^([^.]+)/, "$1-${port}")) + '/livereload.js?snipver=1&port=443'`
+        : `(self.location.protocol.startsWith('http') ? '' : 'http:') + '//' + (self.location.hostname || 'localhost') + ':${port}/livereload.js?snipver=1'`
       return `(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = ${snippetSrc}; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);`
     },
     async generateBundle() {
