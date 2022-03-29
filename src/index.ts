@@ -89,6 +89,8 @@ export default function livereload(
       const port = await portPromise
       const snippetSrc = parsedOptions.clientUrl
         ? JSON.stringify(parsedOptions.clientUrl)
+        : parsedOptions.clientHostname
+        ? `'//${parsedOptions.clientHostname}:${port}/livereload.js?snipver=1'`
         : process.env.CODESANDBOX_SSE
         ? `'//' + (self.location.hostname.replace(/^([^.]+)-\\d+/,"$1").replace(/^([^.]+)/, "$1-${port}")) + '/livereload.js?snipver=1&port=443'`
         : `(self.location.protocol.startsWith('http') ? '' : 'http:') + '//' + (self.location.hostname || 'localhost') + ':${port}/livereload.js?snipver=1'`
