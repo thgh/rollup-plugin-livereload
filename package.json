@@ -35,7 +35,7 @@
     "index.d.ts"
   ],
   "engines": {
-    "node": ">=8.3"
+    "node": ">=16"
   },
   "dependencies": {
     "livereload": "^0.9.1"
