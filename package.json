@@ -37,13 +37,13 @@
   "engines": {
     "node": ">=8.3"
   },
-  "dependencies": {
-    "livereload": "^0.9.1"
-  },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^9.0.0",
     "port-authority": "^1.1.1",
     "rollup": "2",
     "rollup-plugin-serve": "1"
+  },
+  "dependencies": {
+    "livereload": "^0.9.3"
   }
 }

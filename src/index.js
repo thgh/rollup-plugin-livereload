@@ -7,6 +7,8 @@ const state = (global.PLUGIN_LIVERELOAD = global.PLUGIN_LIVERELOAD || {
 })
 
 export default function livereload(options = { watch: '' }) {
+
+
   if (typeof options === 'string') {
     options = {
       watch: options,
@@ -24,9 +26,10 @@ export default function livereload(options = { watch: '' }) {
   let enabled = options.verbose === false
   const portPromise = find(options.port || 35729)
 
+
+
   portPromise.then(port => {
     state.server = createServer({ ...options, port })
-
     // Start watching
     if (Array.isArray(options.watch)) {
       state.server.watch(options.watch.map(w => resolve(process.cwd(), w)))
@@ -47,7 +50,7 @@ export default function livereload(options = { watch: '' }) {
         : process.env.CODESANDBOX_SSE
         ? `'//' + (self.location.host.replace(/^([^.]+)-\\d+/,"$1").replace(/^([^.]+)/, "$1-${port}")).split(':')[0] + '/livereload.js?snipver=1&port=443'`
         : `'//' + (self.location.host || 'localhost').split(':')[0] + ':${port}/livereload.js?snipver=1'`
-      return `(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = ${snippetSrc}; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);`
+      return `(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = ${snippetSrc}; r.id = 'livereloadscript'; r.crossOrigin='anonymous'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);`
     },
     async generateBundle() {
       if (!enabled) {
