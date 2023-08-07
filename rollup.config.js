@@ -14,6 +14,6 @@ export default {
       format: 'es',
     },
   ],
-  external: ['livereload'].concat(builtinModules),
+  external: ['livereload', 'port-authority'].concat(builtinModules),
   plugins: [resolve()],
 }
