@@ -2,13 +2,25 @@
   "name": "rollup-plugin-livereload",
   "version": "2.0.5",
   "description": "Rollup plugin for LiveReload that watches the bundle and reloads the page on change",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.es.js",
-  "types": "index.d.ts",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/index.cjs",
+        "types": "./dist/index.d.cts"
+      }
+    }
+  },
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -cw",
+    "build": "tsup src/index.ts --clean --format esm,cjs --cjsInterop --dts",
+    "dev": "npm run build -- --watch",
     "lint": "prettier -l .",
     "fix": "prettier --write .",
     "test": "cd test && rollup -cw ; cd ..",
@@ -31,20 +43,20 @@
     "url": "https://github.com/thgh/rollup-plugin-livereload"
   },
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "engines": {
-    "node": ">=8.3"
+    "node": ">=16"
   },
   "dependencies": {
     "@types/livereload": "^0.9.1",
     "livereload": "^0.9.1"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^9.0.0",
     "port-authority": "^1.1.1",
     "rollup": "2",
-    "rollup-plugin-serve": "1"
+    "rollup-plugin-serve": "1",
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.6"
   }
 }

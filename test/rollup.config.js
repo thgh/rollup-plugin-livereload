@@ -1,5 +1,5 @@
 import serve from 'rollup-plugin-serve'
-import live from '../src/index.js'
+import livereload from '../dist/index.js'
 
 export default {
   input: 'entry.js',
@@ -9,6 +9,6 @@ export default {
   },
   plugins: [
     serve({ contentBase: '', port: Math.round(Math.random() * 10000) + 40000 }),
-    live(),
+    livereload(),
   ],
 }
