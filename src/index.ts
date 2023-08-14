@@ -1,4 +1,8 @@
-import { createServer, type LiveReloadServer } from 'livereload'
+import {
+  createServer,
+  type LiveReloadServer,
+  type CreateServerConfig,
+} from 'livereload'
 import { resolve } from 'path'
 import { find } from 'port-authority'
 import { type Plugin } from 'rollup'
@@ -11,48 +15,38 @@ const state = (global.PLUGIN_LIVERELOAD = global.PLUGIN_LIVERELOAD || {
   server: null,
 })
 
-export interface RollupLivereloadOptions {
-  /** Defaults to current directory */
+export interface RollupLivereloadOptions extends CreateServerConfig {
+  /**
+   * A directory or a set of directories to watch for changes.
+   * @default the current directory
+   */
   watch?: string | string[]
 
   /**
-   * Inject the livereload snippet into the bundle which will enable livereload
-   * in your web app.
-   * Defaults to true
+   * Whether or not to inject the `livereload` snippet into the bundle which
+   * will enable `livereload` in your web app.
+   * @default true
    */
   inject?: boolean
 
   /**
-   * Log a message to console when livereload is ready
-   * Defaults to true
+   * Log a message to console when `livereload` is ready.
+   * @default true
    */
   verbose?: boolean
 
   ///
-  /// Find all livereload options here:
+  /// Find all `livereload` options here:
   /// https://www.npmjs.com/package/livereload#user-content-server-api
   ///
 
-  /**
-   * The listening port.
-   * It defaults to 35729 which is what the LiveReload extensions use currently.
-   */
-  port?: number
-
-  /**
-   * Add a delay (in milliseconds) between when livereload detects a change to
-   * the filesystem and when it notifies the browser. Useful if the browser is
-   * reloading/refreshing before a file has been compiled.
-   */
-  delay?: number
-
   /** @private */
   clientUrl?: string
-
-  /** Livereload options, improvements welcome */
-  [livereloadOption: string]: any
 }
 
+/**
+ * 🔄 A Rollup plugin for including `livereload` in your web app.
+ */
 export default function livereload(
   options?: RollupLivereloadOptions | string
 ): Plugin {

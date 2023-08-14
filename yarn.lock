@@ -165,13 +165,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@types/livereload@^0.9.2":
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/@types/livereload/-/livereload-0.9.2.tgz#e5259bc2f38f6dc631a7139a2383cd70e267fe81"
-  integrity sha512-bsqybchTSujFlMlVZWFvL4X1+q7MLe+VxJ0WZgwgP87MHNzkO34JqwkYe+STvtUyRDv2ee3kHdVVXBKsZRLB6w==
-  dependencies:
-    "@types/ws" "*"
-
 "@types/livereload@^0.9.1":
   version "0.9.2"
   resolved "https://registry.yarnpkg.com/@types/livereload/-/livereload-0.9.2.tgz#e5259bc2f38f6dc631a7139a2383cd70e267fe81"
@@ -652,6 +645,11 @@ postcss-load-config@^4.0.1:
   dependencies:
     lilconfig "^2.0.5"
     yaml "^2.1.1"
+
+prettier@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.0.1.tgz#65271fc9320ce4913c57747a70ce635b30beaa40"
+  integrity sha512-fcOWSnnpCrovBsmFZIGIy9UqK2FaI7Hqax+DIO0A9UxeVoY4iweyaFjS5TavZN97Hfehph0nhsZnjlVKzEQSrQ==
 
 punycode@^2.1.0:
   version "2.3.0"
