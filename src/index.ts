@@ -15,6 +15,10 @@ const state = (global.PLUGIN_LIVERELOAD = global.PLUGIN_LIVERELOAD || {
   server: null,
 })
 
+/**
+ * Find all `livereload` options here:
+ * https://www.npmjs.com/package/livereload#user-content-server-api
+ */
 export interface RollupLivereloadOptions extends CreateServerConfig {
   /**
    * A directory or a set of directories to watch for changes.
@@ -35,13 +39,17 @@ export interface RollupLivereloadOptions extends CreateServerConfig {
    */
   verbose?: boolean
 
-  ///
-  /// Find all `livereload` options here:
-  /// https://www.npmjs.com/package/livereload#user-content-server-api
-  ///
-
-  /** @private */
+  /**
+   * Override the snippet URL
+   * @example "//localhost:35729/livereload.js?snipver=1"
+   */
   clientUrl?: string
+
+  /**
+   * Override the hostname of the snippet URL
+   * @example "example.test"
+   */
+  clientHostname?: string
 }
 
 /**

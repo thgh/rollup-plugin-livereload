@@ -30,7 +30,7 @@ import livereload from 'rollup-plugin-livereload'
 
 export default {
   input: 'entry.js',
-  output: { file:'bundle.js' },
+  output: { file: 'bundle.js' },
   plugins: [livereload()],
 }
 ```
@@ -44,7 +44,7 @@ import livereload from 'rollup-plugin-livereload'
 
 export default {
   input: 'entry.js',
-  output: { file:'bundle.js' },
+  output: { file: 'bundle.js' },
   plugins: [
     serve(), // index.html should be in root of project
     livereload(),
@@ -57,12 +57,14 @@ export default {
 By default, it watches the current directory. If you also have css output, pass the folder to which the build files are written.
 
 This plugin supports the following options:
-* `clientUrl`: provide an alternative URL to the `livereload.js` script/resource. This URL is always preferred over all other generated URLs.
-* `clientHostname`: alternative hostname used instead of `localhost` or the site's current host, where the bundle is fetched from. Use this option when you include your bundle from a different host.
+
+- `clientUrl`: provide an alternative URL to the `livereload.js` script/resource. This URL is always preferred over all other generated URLs.
+- `clientHostname`: alternative hostname used instead of `localhost` or the site's current host, where the bundle is fetched from. Use this option when you include your bundle from a different host.
 
 All remaining options are passed to [`livereload.createServer()`][livereload].
 
 Example:
+
 ```
 livereload('dist')
 
