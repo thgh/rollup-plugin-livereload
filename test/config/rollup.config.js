@@ -1,5 +1,5 @@
 import serve from 'rollup-plugin-serve'
-import livereload from '../dist/index.js'
+import livereload from '../../dist/index.js'
 
 export default {
   input: 'entry.js',
