@@ -1,8 +1,5 @@
 name: Test
-on:
-  push:
-    branches:
-      - '*'
+on: push
 jobs:
   deploy:
     name: Deploy main
