@@ -23,7 +23,7 @@
     "dev": "npm run build -- --watch",
     "lint": "prettier -l .",
     "fix": "prettier --write .",
-    "test": "cd test && rollup -cw ; cd ..",
+    "test": "vitest --single-thread",
     "prepare": "npm run build"
   },
   "keywords": [
@@ -49,14 +49,17 @@
     "node": ">=16"
   },
   "dependencies": {
+    "@types/livereload": "^0.9.1",
     "livereload": "^0.9.1"
   },
   "devDependencies": {
-    "@types/livereload": "^0.9.2",
+    "@types/ws": "^8.5.5",
     "port-authority": "^1.1.1",
-    "rollup": "2",
+    "prettier": "^3.0.1",
+    "rollup": "3",
     "rollup-plugin-serve": "1",
     "tsup": "^7.2.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vitest": "^0.34.1"
   }
 }

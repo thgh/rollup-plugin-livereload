@@ -12,4 +12,4 @@ node_modules
 
 # Build files
 dist/*
-test/dest.js
+test/*/dest.js
