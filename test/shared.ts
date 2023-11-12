@@ -48,17 +48,11 @@ export function createContext(folder = 'entry') {
           client.send(JSON.stringify({ command: 'info', url: ctx.url + '/' }))
           resolve(client)
         }
-        if (
-          data.command === 'reload' &&
-          data.path.endsWith(folder + '/dest.js')
-        ) {
+        if (data.command === 'reload') {
           ctx.reload(data.path)
         }
       })
     })
-
-    // Ignore reloads in the first second
-    await new Promise(resolve => setTimeout(resolve, 1000))
 
     ctx.reload = vi.fn((path: string) => {})
   })
