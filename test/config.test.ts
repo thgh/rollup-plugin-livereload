@@ -17,10 +17,10 @@ describe('config update', test => {
     // Update the config file and check if it reloads
     appendFileSync(FILE_TO_MODIFY, '\nconsole.log("append")')
     await new Promise(resolve => setTimeout(resolve, 1000 + DELAY))
-    expect(ctx.reload).toHaveBeenCalledTimes(1)
     expect(ctx.reload).toHaveBeenCalledWith(
       expect.stringContaining('rollup.config.js')
     )
+    expect(ctx.reload).toHaveBeenCalledTimes(1)
   })
 
   afterAll(() => {
